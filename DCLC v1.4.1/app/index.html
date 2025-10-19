@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DCLC — Diffy Cult Challenge (Offline)</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-title">DCLC — Diffy Cult Challenge</div>
+      <div class="version" id="version">v?.?.?</div>
+    </header>
+    <nav class="tabs" id="tabs"></nav>
+    <main>
+      <!-- Panels -->
+      <section class="panel grid-2 active" id="panel-home" data-panel="home" aria-labelledby="tab-home">
+        <div class="card" id="weekly-card">
+          <h2>Weekly Checklist</h2>
+          <div class="row">
+            <button class="button" id="editWeekly">Edit</button>
+            <button class="button" id="addTask" hidden>Add Task</button>
+            <small class="muted">Editable list; persists locally</small>
+          </div>
+          <ul id="weeklyList"></ul>
+        </div>
+        <div class="card">
+          <h2>Soul Points</h2>
+          <div class="row">
+            <input class="input" id="spDelta" type="number" placeholder="+/- points" />
+            <select id="spGenTag" class="input"></select>
+            <button class="button primary" id="spApply">Apply</button>
+          </div>
+          <p>Total: <strong id="spTotal">0</strong></p>
+          <details>
+            <summary>History</summary>
+            <ul id="spHistory"></ul>
+          </details>
+        </div>
+
+        <div class="card" style="grid-column: 1 / -1;">
+          <h2>Wheels & Rituals</h2>
+          <div class="row">
+            <a class="button" href="#" data-open="spinners">Open Spinners</a>
+            <a class="button" href="#" id="openSimsTree">Sims Tree</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" id="panel-generations" data-panel="generations" aria-labelledby="tab-generations">
+        <div class="card">
+          <h2>Generations</h2>
+          <div class="row" id="gensTabs"></div>
+          <article id="genContent"></article>
+        </div>
+      </section>
+
+      <section class="panel" id="panel-balances" data-panel="balances" aria-labelledby="tab-balances">
+        <div class="card">
+          <h2>Money</h2>
+          <div class="row">
+            <input class="input" id="moneyDate" type="date">
+            <input class="input" id="moneyAmount" type="number" step="0.01" placeholder="Amount">
+            <select id="moneyKind" class="input">
+              <option value="borrow">Borrow</option>
+              <option value="repay">Repay</option>
+            </select>
+            <input class="input" id="moneyNote" placeholder="Note">
+            <button class="button primary" id="moneyAdd">Add</button>
+          </div>
+          <table id="moneyTable">
+            <thead><tr><th>Date</th><th>Kind</th><th>Amount</th><th>Note</th><th></th></tr></thead>
+            <tbody></tbody>
+            <tfoot><tr><td colspan="2">Total</td><td id="moneyTotal">0</td><td colspan="2"></td></tr></tfoot>
+          </table>
+        </div>
+
+        <div class="card">
+          <h2>Soul Points Ledger</h2>
+          <div class="row">
+            <select id="spFilterGen" class="input"></select>
+            <button class="button" id="spFilterClear">Clear Filter</button>
+          </div>
+          <table id="spTable">
+            <thead><tr><th>Date</th><th>Δ</th><th>Gen</th><th>Note</th><th></th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel" id="panel-rules" data-panel="rules" aria-labelledby="tab-rules">
+        <div class="card" style="display:grid; grid-template-columns: 2fr 1fr; gap: var(--gap);">
+          <article id="rulesMain"></article>
+          <aside>
+            <h3>Extra Sources</h3>
+            <ul id="rulesSources"></ul>
+          </aside>
+        </div>
+      </section>
+
+      <section class="panel" id="panel-spinners" data-panel="spinners" aria-labelledby="tab-spinners">
+        <div class="card iframe-wrap" id="spinnerList"></div>
+      </section>
+
+      <section class="panel" id="panel-resources" data-panel="resources" aria-labelledby="tab-resources">
+        <div class="card">
+          <h2>Resources & Credits</h2>
+          <ul>
+            <li><a href="https://www.ea.com/games/the-sims/the-sims-4" target="_blank" rel="noreferrer">The Sims 4</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="panel" id="panel-settings" data-panel="settings" aria-labelledby="tab-settings">
+        <div class="card">
+          <h2>Data</h2>
+          <div class="row">
+            <button class="button" id="exportAll">Export JSON</button>
+            <input type="file" id="importFile" accept="application/json">
+            <button class="button" id="importBtn">Import</button>
+            <button class="button" id="clearAll">Clear All</button>
+          </div>
+          <small class="muted">Exports include weekly tasks, money ledger, soul points history & totals, profile, and Sims Tree URL.</small>
+        </div>
+        <div class="card">
+          <h2>Theme</h2>
+          <div class="row">
+            <select id="themeSelect" class="input">
+              <option value="system">System</option>
+              <option value="light">Light</option>
+              <option value="dark" selected>Dark</option>
+            </select>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

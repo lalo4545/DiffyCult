@@ -1,0 +1,22 @@
+# OS/editor junk
+.DS_Store
+Thumbs.db
+*.log
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+env/
+venv/
+
+# Builds & archives
+dist/
+build/
+*.zip
+*.7z
+
+# Big local folders you never want in git
+runtime/
+logs/
+uploads/
