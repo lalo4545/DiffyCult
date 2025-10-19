@@ -1,0 +1,28 @@
+{
+  "title": "TS4 \u2014 Diffy Cult Challenge (Dashboard v0.1.5)",
+  "version": "0.1.5",
+  "weekly_day_hint": "Friday",
+  "links": {
+    "generations": "https://example.com/generations",
+    "balances": "https://example.com/balances",
+    "rules": "https://example.com/rules",
+    "extra": "https://example.com/extra",
+    "resources": "https://example.com/resources",
+    "popcorn": "https://spinthewheel.app/ig880Od4ZF",
+    "rebirth": "https://spinthewheel.io/wheels/zoZT4VcexBx1JENZKbkucz0xJmU9MQ==",
+    "reckoning": "https://example.com/reckoning",
+    "tier1": "https://spinthewheel.app/LrznvN0Agk",
+    "tier2": "https://spinthewheel.app/D2Rm6GFNNE",
+    "blessings": "https://spinthewheel.app/nYgtXQ4KzF"
+  },
+  "embeds": {
+    "simsTreeDefault": "https://app.thesimstree.com/public/tree/ENbjx4zWILE3LPiqENEKkJnFMJGsaSYo?ref=5f06a0ce"
+  },
+  "generationsTabs": [
+    {
+      "id": "gen1",
+      "title": "Gen 1 \u2014 Placeholder",
+      "file": "content/generations/gen1.md"
+    }
+  ]
+}

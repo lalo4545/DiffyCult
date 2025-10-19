@@ -1,0 +1,35 @@
+{
+  "productName": "Diffy Cult",
+  "version": "0.0.4",
+  "identifier": "app.diffy.cult",
+  "build": {
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Diffy Cult Dashboard",
+        "width": 1200,
+        "height": 800,
+        "resizable": true,
+        "center": true
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: file: https: http:; frame-src https:;"
+    }
+  },
+  "plugins": {
+    "shell": {}
+  },
+  "bundle": {
+    "active": true,
+    "targets": [
+      "app"
+    ],
+    "icon": [
+      "icons/app-icon.png",
+      "icons/icon.ico"
+    ]
+  }
+}
