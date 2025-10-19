@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TS4 — Diffy Cult Challenge (Dashboard v0.1.5)</title>
+<link rel="stylesheet" href="styles.css">
+<meta name="theme-color" content="#15151c">
+<body>
+<div class="container">
+  <div class="header">
+    <div class="h1">TS4 — Diffy Cult Challenge <span class="small">Dashboard</span></div>
+    <span class="version" id="version">v0.1.5</span>
+    <span class="pill" id="weekly-pill">Weekly day: <strong id="weekly-day">Friday</strong></span>
+  </div>
+  <p class="small">Clean baseline. Replace placeholder files with your content. No service worker to avoid caching while you edit.</p>
+
+  <div class="grid" style="margin-top:16px">
+    <div class="card" style="grid-column: span 6;">
+      <h2>Quick Links</h2>
+      <div class="row" id="quick-links"></div>
+    </div>
+
+    <div class="card" style="grid-column: span 6;">
+      <h2>Wheels & Rituals</h2>
+      <div class="row">
+        <a class="btn go"   id="lnk-popcorn"  target="_blank" rel="noopener noreferrer">🍿 Pop-Corn House</a>
+        <a class="btn go"   id="lnk-rebirth"  target="_blank" rel="noopener noreferrer">☸️ Rebirth</a>
+        <a class="btn go"   id="lnk-reckoning" target="_blank" rel="noopener noreferrer">⏳ Great Reckoning</a>
+      </div>
+      <div class="section">
+        <div class="row">
+          <a class="btn tier1" id="lnk-tier1"  target="_blank" rel="noopener noreferrer">🪩 Tier 1 — 3–6 SP</a>
+          <a class="btn tier2" id="lnk-tier2"  target="_blank" rel="noopener noreferrer">🪩 Tier 2 — 7+ SP</a>
+          <a class="btn bless" id="lnk-bless"  target="_blank" rel="noopener noreferrer">✨ Blessings — ≤2 SP</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="grid-column: span 7;">
+      <h2>Weekly Checklist</h2>
+      <div class="checklist" id="weekly-list"></div>
+      <div class="row" style="margin-top:8px">
+        <button class="btn" id="reset-week">Reset this week</button>
+      </div>
+      <p class="small">Progress stores locally (no cloud).</p>
+    </div>
+
+    <div class="card" style="grid-column: span 5; justify-self:center;">
+      <h2>Soul Points — Weekly Total</h2>
+      <div class="gauge-wrap">
+        <div class="gauge" id="sp-gauge">
+          <div class="gauge-label" id="sp-label">0<br><span class="gauge-sub">SP</span></div>
+        </div>
+      </div>
+      <div class="sp-ctl">
+        <button class="btn" id="sp-minus">–1</button>
+        <input type="number" id="sp-input" min="0" step="1" value="0" aria-label="Soul Points">
+        <button class="btn" id="sp-plus">+1</button>
+        <button class="btn" id="sp-save">Save</button>
+        <button class="btn" id="sp-reset">Reset</button>
+      </div>
+      <p class="small" id="sp-tier-hint">Tier: Blessing (≤ 2)</p>
+    </div>
+
+    <div class="card" style="grid-column: span 12;">
+      <h2>Scoring (Quick Add)</h2>
+      <div class="score-row">
+        <select id="score-select" class="score" aria-label="Choose a scoring event">
+          <option value="">Select an entry to apply…</option>
+          <optgroup label="Earning Points (+)">
+            <option value="+1 Missed sunrise meditation">+1 — Missed sunrise meditation (5–7am)</option>
+            <option value="+1 Negative emotion &gt; 6h">+1 — Negative Emotion &gt; 6 hours</option>
+            <option value="+1 Fights/Insults/Yells">+1 — Yells / Insults / Fights</option>
+            <option value="+1 Broke vegetarian rule">+1 — Breaks vegetarian rule</option>
+            <option value="+1 Death on cult property">+1 — Death on cult property</option>
+            <option value="+2 Death of a follower">+2 — Death of a follower</option>
+            <option value="+2 Cancels wellness class">+2 — Cancels wellness class mid-session</option>
+            <option value="+2 Week of Penance (heir died as follower)">+2 — Week of Penance for heir dying as follower</option>
+            <option value="+3 Accepts a career">+3 — Accepts a career</option>
+            <option value="+3 Uses dark magic/vampire powers">+3 — Uses vampire powers / dark magic</option>
+            <option value="+3 Takes over a cult club via cheat">+3 — Takes over a cult club via cheat</option>
+            <option value="+3 Lost the heir's soul">+3 — Losing your heir's soul</option>
+            <option value="+3 Week of Penance (heir died while exiled)">+3 — Week of Penance for heir dying while exiled</option>
+            <option value="+3 Unachieved generation goals at heir death">+3 — Unachieved generation goals at heir death</option>
+          </optgroup>
+          <optgroup label="Cleansing Points (–)">
+            <option value="-1 3-hour meditation alone">-1 — 3-hour meditation alone</option>
+            <option value="-1 Week of Penance for lost heir">-1 — Week of Penance for lost heir</option>
+            <option value="-1 Journal about truth/guilt">-1 — Journal about “truth” or “guilt”</option>
+            <option value="-2 Donate §2,000">-2 — Donate §2,000</option>
+            <option value="-2 Gain a Spirit Guide">-2 — Gain a Spirit Guide</option>
+            <option value="-2 Week of Penance (heir died as Acting Leader)">-2 — Week of Penance for heir dying as Acting Leader</option>
+            <option value="-2 Peace via Great Reckoning">-2 — Achieve peace via Great Reckoning spin</option>
+            <option value="-3 Yoga/Meditation milestone">-3 — Complete a yoga or meditation milestone</option>
+            <option value="reset Penance Retreat">Reset — Penance Retreat (24 sim hours)</option>
+          </optgroup>
+        </select>
+        <button class="btn" id="apply-score">Apply</button>
+        <button class="btn" id="undo-score">Undo last</button>
+      </div>
+      <div class="history" id="score-history"></div>
+    </div>
+
+    <div class="card" style="grid-column: span 8;">
+      <h2>Generations</h2>
+      <div class="tabs" id="gen-tabs"></div>
+      <div class="tabpanel" id="gen-panel">
+        <div class="small">Select a generation tab to load its content…</div>
+      </div>
+    </div>
+
+    <div class="card" style="grid-column: span 4;">
+      <h2>Profile</h2>
+      <div class="profile-pic-wrap">
+        <img id="profile-img" src="images/default.png" alt="Profile" class="profile-pic">
+        <input type="file" id="profile-upload" accept="image/*" style="display:none;">
+      </div>
+      <p class="small">Click the image to set a custom profile picture. Stored offline.</p>
+    </div>
+
+    <div class="card" style="grid-column: span 12;">
+      <h2>Family Tree (The Sims Tree)</h2>
+      <div class="row" style="gap:8px; align-items:center; flex-wrap:wrap;">
+        <input id="embed-url" type="url" placeholder="Paste a Sims Tree public link…"
+               style="flex:1; min-width:340px; padding:10px; border-radius:10px; border:1px solid #2a2a35; background:#0f0f16; color:var(--ink);">
+        <button class="btn" id="embed-save">Save</button>
+        <button class="btn" id="embed-reset">Reset</button>
+        <a class="btn" id="embed-open" target="_blank" rel="noopener noreferrer">Open in Browser</a>
+      </div>
+      <p class="small" id="embed-note" style="margin:8px 0 6px;">
+        Paste any public Sims Tree link. If a site blocks embedding, use “Open in Browser.”
+      </p>
+      <div id="embed-frame-wrap" style="border:1px solid #2a2a35; border-radius:12px; overflow:hidden;">
+        <iframe id="embed-frame" src="" width="100%" height="640" style="border:0;"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>Local dashboard • Edit <span class="kbd">data/config.json</span> • <span id="year"></span></span>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
