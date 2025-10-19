@@ -1,0 +1,122 @@
+
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TS4 — Diffy Cult Challenge (Dashboard v0.1.3)</title>
+<link rel="stylesheet" href="styles.css">
+<meta name="theme-color" content="#15151c">
+<body>
+<div class="container">
+  <div class="header">
+    <div class="h1">TS4 — Diffy Cult Challenge <span class="small">Dashboard</span></div>
+    <span class="version" id="version">v0.1.3</span>
+    <span class="pill" id="weekly-pill">Weekly day: <strong id="weekly-day">Friday</strong></span>
+  </div>
+  <p class="small">Local-first dashboard. If a link doesn't open, try a hard reload (Ctrl/Cmd+Shift+R). This build embeds config, so it works even from file://.</p>
+
+  <div class="grid" style="margin-top:16px">
+    <div class="card" style="grid-column: span 6;">
+      <h2>Quick Links</h2>
+      <div class="row" id="quick-links"></div>
+    </div>
+
+    <div class="card" style="grid-column: span 6;">
+      <h2>Wheels & Rituals</h2>
+      <div class="row">
+        <a class="btn go"   id="lnk-popcorn"  target="_blank" rel="noopener noreferrer">🍿 Pop-Corn House</a>
+        <a class="btn go"   id="lnk-rebirth"  target="_blank" rel="noopener noreferrer">☸️ Rebirth</a>
+        <a class="btn go"   id="lnk-reckoning" target="_blank" rel="noopener noreferrer">⏳ Great Reckoning</a>
+      </div>
+      <div class="section">
+        <div class="row">
+          <a class="btn tier1" id="lnk-tier1"  target="_blank" rel="noopener noreferrer">🪩 Tier 1 — 3–6 SP</a>
+          <a class="btn tier2" id="lnk-tier2"  target="_blank" rel="noopener noreferrer">🪩 Tier 2 — 7+ SP</a>
+          <a class="btn bless" id="lnk-bless"  target="_blank" rel="noopener noreferrer">✨ Blessings — ≤2 SP</a>
+        </div>
+      </div>
+      <p class="small" id="pop-tip" style="margin-top:8px"></p>
+    </div>
+
+    <div class="card" style="grid-column: span 7;">
+      <h2>Weekly Checklist</h2>
+      <div class="checklist" id="weekly-list"></div>
+      <div class="row" style="margin-top:8px">
+        <button class="btn" id="reset-week">Reset this week</button>
+      </div>
+      <p class="small">Progress stores locally (no cloud).</p>
+    </div>
+
+    <div class="card" style="grid-column: span 5; justify-self:center;">
+      <h2>Soul Points — Weekly Total</h2>
+      <div class="gauge-wrap">
+        <div class="gauge" id="sp-gauge">
+          <div class="gauge-label" id="sp-label">0<br><span class="gauge-sub">SP</span></div>
+        </div>
+      </div>
+      <div class="sp-ctl">
+        <button class="btn" id="sp-minus">–1</button>
+        <input type="number" id="sp-input" min="0" step="1" value="0" aria-label="Soul Points">
+        <button class="btn" id="sp-plus">+1</button>
+        <button class="btn" id="sp-save">Save</button>
+        <button class="btn" id="sp-reset">Reset</button>
+      </div>
+      <p class="small" id="sp-tier-hint">Tier: Blessing (≤ 2)</p>
+    </div>
+
+    <div class="card" style="grid-column: span 5;">
+      <h2>Great Reckoning — 0/10 Weeks</h2>
+      <div class="counter">
+        <label class="tag">Weeks Complete</label>
+        <input type="number" id="reckon-weeks" min="0" max="10" step="1" value="0">
+        <button class="btn" id="save-reckon">Save</button>
+      </div>
+      <p class="small">Manual tracker. At 10, do the Reckoning spin.</p>
+    </div>
+
+    <div class="card" style="grid-column: span 12;">
+      <h2>Scoring Summary (Shadow Points)</h2>
+      <div class="grid" style="grid-template-columns: repeat(2, 1fr); gap: 16px;">
+        <div>
+          <strong>Earning Points</strong>
+          <ul class="clean">
+            <li>+1 Missed sunrise meditation (5–7am)</li>
+            <li>+1 Negative Emotion &gt; 6 hours</li>
+            <li>+1 Yells/Insults/Fights</li>
+            <li>+1 Breaks vegetarian rule</li>
+            <li>+1 Death on cult property</li>
+            <li>+2 Death of a follower</li>
+            <li>+2 Cancels wellness class mid-session</li>
+            <li>+2 Week of Penance for heir dying as follower</li>
+            <li>+3 Accepts a career (see rules)</li>
+            <li>+3 Uses vampire powers/dark magic</li>
+            <li>+3 Takes over a cult club via cheat</li>
+            <li>+3 Losing your heir's soul</li>
+            <li>+3 Week of Penance for heir dying while exiled</li>
+            <li>+3 Any unachieved generation goals at heir death</li>
+          </ul>
+        </div>
+        <div>
+          <strong>Cleansing Points</strong>
+          <ul class="clean">
+            <li>-1 3-hour meditation alone</li>
+            <li>-1 Week of Penance for lost heir</li>
+            <li>-1 Journal about “truth” or “guilt”</li>
+            <li>-2 Donate §2,000 (Balance Sheet)</li>
+            <li>-2 Gain a Spirit Guide</li>
+            <li>-2 Week of Penance for heir dying as Acting Leader</li>
+            <li>-2 Achieve peace via Great Reckoning spin</li>
+            <li>-3 Complete a yoga or meditation milestone</li>
+            <li>Reset: Penance Retreat — spend 24 sim hours</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Embedded config fallback for file:// -->
+  <script id="embed-config" type="application/json">{"title": "TS4 \u2014 Diffy Cult Challenge (Dashboard v0.1.3)", "version": "0.1.3", "weekly_day_hint": "Friday", "links": {"generations": "https://www.notion.so/Generations-28deed3eb8318072b52ecab4abfdfe75?pvs=21", "balances": "https://www.notion.so/Balances-28deed3eb83180499a96f5efdb2c127e?pvs=21", "rules": "https://www.notion.so/Rules-Lore-28deed3eb83180b1965afd46279ad482?pvs=21", "extra": "https://www.notion.so/Extra-Links-28deed3eb831804ebeb3cf77a7f9699a?pvs=21", "resources": "https://www.notion.so/Resources-28deed3eb831808fa8a8d40253e599a6?pvs=21", "popcorn": "https://spinthewheel.app/ig880Od4ZF", "rebirth": "https://spinthewheel.io/wheels/zoZT4VcexBx1JENZKbkucz0xJmU9MQ==", "reckoning": "https://www.notion.so/The-Great-Reckoning-28deed3eb83180999f4fd21e2fe9e2ad?pvs=21", "tier1": "https://spinthewheel.app/LrznvN0Agk", "tier2": "https://spinthewheel.app/D2Rm6GFNNE", "blessings": "https://spinthewheel.app/nYgtXQ4KzF"}}</script>
+  <script src="app.js"></script>
+</div>
+</body>
+</html>
